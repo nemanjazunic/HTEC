@@ -14,14 +14,13 @@ public class LoginTest extends BaseTest {
 	WebDriverWait wait;
 	protected LoginPage loginPage;
 	
-	public LoginTest() {
+	@BeforeEach
+	public void SetUp() {
+		
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 5);
 		loginPage = new LoginPage(driver);
-	}
-	
-	@BeforeEach
-	public void SetUp() {
+		
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		driver.get("https://qa-sandbox.apps.htec.rs/");
@@ -35,5 +34,6 @@ public class LoginTest extends BaseTest {
 	@AfterEach
 	public void End() {
 		driver.close();
+		driver.quit();
 	}	
 }

@@ -29,7 +29,8 @@ public class UseCaseTest extends BaseTest{
 	private String FirstStep = "Test First Step";
 	private String BaseString = "This field previously had %s characters";
 	
-	public UseCaseTest() {
+	@BeforeEach
+	public void SetUp() {
 		
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 5);
@@ -38,10 +39,6 @@ public class UseCaseTest extends BaseTest{
 		useCasesPage = new UseCasesPage(driver);
 		useCasePage = new UseCasePage(driver);	
 		deletePopupPage = new DeletePopupPage(driver);
-	}
-	
-	@BeforeEach
-	public void SetUp() {
 
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
@@ -262,6 +259,7 @@ public class UseCaseTest extends BaseTest{
 	@AfterEach
 	public void End() {
 		driver.close();
+		driver.quit();
 	}
 
 }
